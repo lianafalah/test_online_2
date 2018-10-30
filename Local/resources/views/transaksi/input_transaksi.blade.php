@@ -26,11 +26,17 @@
                           </select>
                       </div>
     </div>
-    <div class="form-group ">
-      <label for="nama" class="control-label col-lg-2">Nama</label>
+   <div class="form-group ">
+       <label for="status" class="control-label col-lg-2">Kategori</label>
         <div class="col-lg-10">
-          <input class="form-control "  id="nama" type="text" name="nama" required  />
-        </div>
+      <select id="provinsi" type="text" class="form-control" name="nama" required>
+                      <option value=""> -- Pilih Kategoti -- </option>
+                      @foreach($jenis as $list)
+                      <option value="{{ $list->nama}}">{{ $list->nama }}</option>
+                      @endforeach
+                    </select>
+                    </div>
+
     </div>
     
     <div class="form-group" id="deskripsi" >

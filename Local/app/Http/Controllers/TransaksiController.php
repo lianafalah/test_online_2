@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Transaksi;
 use Carbon\Carbon;
+use App\Kategori;
 use DB;
 class TransaksiController extends Controller
 {
@@ -30,6 +31,11 @@ class TransaksiController extends Controller
         $saldo = $pemasukan-$pengeluaran;
         return view('transaksi.index',compact('transaksi_list','saldo','pemasukan','pengeluaran')); 
     }
+    public function ambilKategori($tipe_kategori)
+        {
+            $kategori = Kategori::where('tipe_kategori',$tipe_kategori)->pluck("nama","jenis_transaksi");
+            return json_encode($kategori);
+        }
 
     /**
      * Show the form for creating a new resource.
@@ -38,7 +44,8 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        return view('transaksi.input_transaksi'); 
+        $jenis = Kategori::all();
+        return view('transaksi.input_transaksi', compact('jenis')); 
     }
 
     /**
